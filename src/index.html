@@ -5,26 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Github user info</title>
 </head>
 
 <body>
     <h1>Github user info</h1>
+    <main>
+        <div>
+            <button id="btn--fetchAll" onclick="fetchUsers()">
+                Get list of users
+                <!-- This button is used to display/hide list of users from github -->
+            </button>
+            <form>
+                <!-- Search form -->
+                <input type="text" name="user" id="user">
+                <button type="button" onclick="searchUser()">Search user</button>
+            </form>
+        </div>
+        <section>
+            <!-- display result -->
+        </section>
+        <ul id="user-list">
+            <!-- list of users of GitHub. Only need to display 30 -->
+        </ul>
+    </main>
+
     <script src="../dist/index.js"></script>
 </body>
-<main>
-    <button id="btn--fetchAll">
-        <!-- This button is used to display/hide list of users from github -->
-    </button>
-    <div id="user-list">
-        <!-- list of users of GitHub. Only need to display 30 -->
-    </div>
-    <form>
-        <!-- Search form -->
-    </form>
-    <section>
-        <!-- display result -->
-    </section>
-</main>
 
 </html>
