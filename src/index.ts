@@ -5,12 +5,10 @@ interface User {
     site_admin: boolean
     repos_url: string
 }
-
 interface UserRepo {
     repos_url: string;
     repos: [];
 }
-
 interface ErrorMsg {
     documentation_url: string
     message: string
