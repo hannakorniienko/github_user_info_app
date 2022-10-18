@@ -1,3 +1,5 @@
+My link: https://hannakorniienko.github.io/bof-user_info_app/
+
 # Getting Started with TypeScript & Promise
 
 THis assignmnet uses GitHub API [https://api.github.com/users](link)
