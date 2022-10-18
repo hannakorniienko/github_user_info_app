@@ -5,9 +5,13 @@ interface User {
     site_admin: boolean
     repos_url: string
 }
-interface UserRepo {
-    repos_url: string;
-    repos: [];
+interface UserInfo {
+    html_url: string
+    avatar_url: string
+    login: string
+    name: string
+    email: string
+    public_repos: number
 }
 interface ErrorMsg {
     documentation_url: string
@@ -20,7 +24,7 @@ const user_section = document.querySelector("section")
 
 const fetchUsers = () => {
     fetch("https://api.github.com/users").then(
-        data => data.json() /* same as return data.json() */
+        data => data.json() 
     ).then(
         (data: User[]) => createList(data)
     ).catch((e) => {
@@ -32,12 +36,12 @@ const createList = (usersArray: User[]) => {
     usersArray.forEach(user => {
         const listElement = document.createElement("li")
         const temp_ul = document.createElement("ul")
-        const username = document.createElement("li")
         const avatar = document.createElement("li")
+        const username = document.createElement("li")
+        avatar.innerHTML = `<a href=${user.html_url}><img src=${user.avatar_url}></a>`
         username.innerText = user.login
-        avatar.innerHTML = `<img src=${user.avatar_url}>`
-        temp_ul.appendChild(username)
         temp_ul.appendChild(avatar)
+        temp_ul.appendChild(username)
         listElement.appendChild(temp_ul)
         user_list.appendChild(listElement)
     })
@@ -51,7 +55,7 @@ const searchUser = () => {
                 data => data.json()
             )
             .then(
-                (data: User | ErrorMsg) => {
+                (data: UserInfo | ErrorMsg) => {
                     if ('repos_url' in data) {
                         showUser(data)
                     } else {
@@ -63,16 +67,29 @@ const searchUser = () => {
                 console.log("Error happen, ", e)
             })
     } else {
-        alert("user should not be empty")
+        alert("Enter the username!")
     }
 }
 
-const showUser = (user: User) => {
-    const avatar = document.createElement("img")
-    avatar.src = user.avatar_url
+const showUser = (user: UserInfo) => {
+    const avatar = document.createElement("a")
+    avatar.href = user.avatar_url
+    avatar.innerHTML = `<a href=${user.html_url}><img src=${user.avatar_url}></a>`
     const username = document.createElement("p")
-    username.innerText = user.login
+    username.innerHTML = `<p>Username: ${user.login}</p>`
+    const fullname = document.createElement("p")
+    let check_fullname = !!user.name ? user.name : 'not specified'
+    fullname.innerHTML = `<p>Name: ${check_fullname}</p>`
+    const email = document.createElement("p")
+    let check_email = !!user.email ? user.email : 'not specified'
+    email.innerHTML = `<p>Email: ${check_email}</p>`
+    const repos = document.createElement("p")
+    repos.innerHTML = `<p>Number of public repos: ${user.public_repos}</p>`
     user_section.innerHTML = ""
     user_section.appendChild(avatar)
     user_section.appendChild(username)
+    user_section.appendChild(fullname)
+    user_section.appendChild(email)
+    user_section.appendChild(repos)
+
 }
