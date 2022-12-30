@@ -11,6 +11,7 @@ h1, p {
 div {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     margin: 15px;
 }
 
@@ -24,7 +25,7 @@ img {
 }
 
 img:hover {
-    box-shadow: 0 0 3px 3px brown;
+    box-shadow: 0 0 3px 3px rgb(9, 155, 240);
   }
 
 ul {
@@ -34,7 +35,7 @@ ul {
     list-style-type:none;
 }
 
-.btn-fetchAll {
+.btn {
     height: 40px;
     color: #fff;
     border-radius: 5px;
@@ -55,14 +56,42 @@ ul {
     border: none;
   }
 
-.btn-fetchAll:before {
+.btn:before {
     height: 0%;
     width: 2px;
   }
   
-.btn-fetchAll:hover {
+.btn:hover {
     box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
                 -4px -4px 6px 0 rgba(116, 125, 136, .5), 
       inset -4px -4px 6px 0 rgba(255,255,255,.2),
       inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
   }
+
+  .text-field__input {
+    padding: 0.375rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .text-field__input::placeholder {
+    color: #212529;
+    opacity: 0.4;
+  }
+
+  .text-field__input:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #bdbdbd;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+  }
+
